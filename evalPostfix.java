@@ -1,16 +1,16 @@
 public class evalPostfix {
 
     public static void main(String[] args){
-        String infix = "2*(1+2)+3";
+        String infix = "5+7-2*3+2^3*2+2*3^2";
         String postfix = infix2postfix(infix);
-        //int ans = evalPostfixFunc(postfix);
+        int ans = evalPostfixFunc(postfix);
         System.out.println(infix + " -> " + postfix);
-        //System.out.println("postfix +  = " + ans);
+        System.out.println("postfix = " + ans);
     }
 
     public static boolean isOporator(char op){
 
-        return ((op == '(')||(op == ')')||(op == '^')||(op == '*')||(op == '/')||(op == '+')||(op == '-'));
+        return ((op == '^')||(op == '*')||(op == '/')||(op == '+')||(op == '-'));
     }
 
     public static int precedence(char op){
@@ -36,10 +36,9 @@ public class evalPostfix {
         String postfix = "";
 
         for (int i = 0; i < infix.length(); i++){
-
             char op = infix.charAt(i);
-            if (isOporator(op)) {
 
+            if (isOporator(op)) {
                 while((!stack.isEmpty())&&(precedence(stack.peek()) >= precedence(op))){
 
                     postfix += stack.peek();
@@ -48,6 +47,12 @@ public class evalPostfix {
                 }
                 stack.push(op);
                 }
+            else if (op == '('){
+
+            }
+            else if (op == ')'){
+                
+            }
             else{
                 //Add op to postfix string
                 postfix += op;
