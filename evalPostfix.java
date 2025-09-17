@@ -1,7 +1,7 @@
 public class evalPostfix {
 
     public static void main(String[] args){
-        String infix = "5+7-2*3+2^3*2+2*3^2";
+        String infix = "2*(2*(1+1))";
         String postfix = infix2postfix(infix);
         int ans = evalPostfixFunc(postfix);
         System.out.println(infix + " -> " + postfix);
@@ -48,10 +48,14 @@ public class evalPostfix {
                 stack.push(op);
                 }
             else if (op == '('){
-
+                stack.push(op);
             }
             else if (op == ')'){
-                
+                while (stack.peek() != '(') {
+                    postfix += stack.peek();
+                    stack.pop();
+                }
+                stack.pop();
             }
             else{
                 //Add op to postfix string
