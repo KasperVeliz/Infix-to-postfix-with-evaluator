@@ -33,6 +33,7 @@ public class evalPostfix {
     public static String infix2postfix(String infix){
 
         StackChar stack = new StackChar(infix.length());
+        infix = '('+infix+')';
         String postfix = "";
 
         for (int i = 0; i < infix.length(); i++){
@@ -61,11 +62,6 @@ public class evalPostfix {
                 //Add op to postfix string
                 postfix += op;
             }
-            
-        }
-        while (!stack.isEmpty()) {
-            postfix += stack.peek();
-            stack.pop();
         }
         return postfix;
     }
